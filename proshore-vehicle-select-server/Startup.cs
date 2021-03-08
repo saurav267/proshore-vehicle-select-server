@@ -26,6 +26,7 @@ namespace proshore_vehicle_select_server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,7 +36,13 @@ namespace proshore_vehicle_select_server
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+            app.UseDefaultFiles();
+            //Adding static file middleware
+            app.UseStaticFiles();
             app.UseHttpsRedirection();
 
             app.UseRouting();
